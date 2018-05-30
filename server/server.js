@@ -16,7 +16,12 @@ io.on("connection", (socket) => {
 
   socket.on('createMessage', (message) => {
     console.log('createMessage', message);
-    io.emit('newMessage', {
+    // io.emit('newMessage', {
+    //   from: message.from,
+    //   text: message.text,
+    //   createdAt: new Date().getTime()
+    // });
+    socket.broadcast.emit('newMessage', {
       from: message.from,
       text: message.text,
       createdAt: new Date().getTime()
@@ -31,3 +36,4 @@ io.on("connection", (socket) => {
 server.listen(port, () => {
   console.log(`Server is up on ${port}`);
 });
+
